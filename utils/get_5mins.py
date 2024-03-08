@@ -14,3 +14,9 @@ data2 = candles[-3]
 data3 = candles[-4]
 data4 = candles[-5]
 data5 = candles[-6]
+
+magnitude1 = (float(data1[4])-float(data1[1]))/float(data1[1])
+magnitude2 = (float(data2[4])-float(data2[1]))/float(data2[1])
+magnitude3 = (float(data3[4])-float(data3[1]))/float(data3[1])
+magnitude4 = (float(data4[4])-float(data4[1]))/float(data4[1])
+magnitude5 = (float(data5[4])-float(data5[1]))/float(data5[1])
