@@ -31,8 +31,8 @@ def drwa_csv(csv_file):
         plt.bar(df['timestamp'].iloc[i], abs(df['close'].iloc[i] - df['open'].iloc[i]),
                 bottom=bottom_price, width=0.0007, color=color)
         # 在柱子上方显示幅度，保留两位小数
-        plt.text(df['timestamp'].iloc[i], df['close'].iloc[i] + (0.0001 * max(abs(magnitude), 0.0005)),
-                 f'{magnitude:.2%}', ha='center', va='bottom', rotation=90, fontsize=8)
+        # plt.text(df['timestamp'].iloc[i], df['close'].iloc[i] + (0.0001 * max(abs(magnitude), 0.0005)),
+        #          f'{magnitude:.2%}', ha='center', va='bottom', rotation=90, fontsize=8)
 
     # 添加图表标题和轴标签
     # plt.title('Price Changes Per Minute with Magnitude')
@@ -48,4 +48,4 @@ def drwa_csv(csv_file):
 
 
 
-drwa_csv('../data/DOGEUSDT-1m-2024-03-04.csv')
+drwa_csv('../data/PEPEUSDT-1m-2024-03-05.csv')
