@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 
-csv_file = '../data/doge-35-39.csv'
+csv_file = '../data/doge-35-38.csv'
 
 column_names = ['timestamp', 'open', 'high', 'low', 'close']
 df = pd.read_csv(csv_file, names=column_names, usecols=[0, 1, 2, 3, 4])
@@ -27,7 +27,7 @@ goal = []
 
 for i in [0.01,0.02,0.03,0.04,0.05]:
     expected_profit_ratio=i
-    for j in [-0.01,-0.02,-0.03,-0.04,-0.05,-0.06]:
+    for j in [-0.01,-0.02,-0.03,-0.04,-0.05,-0.06,-0.07]:
         agentx = CoinTrader(80)
         for idx, x in enumerate(df['magnitude']):
             if idx < 5:
