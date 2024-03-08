@@ -26,8 +26,8 @@ class CoinTrader:
                 "sell_info": None  # 初始化卖出信息为None
             })
             # print(f"已购买 {quantity} 个 {coin}，单价 {price_per_coin}。当前余额：{self.balance}")
-        else:
-            print(f"余额不足，无法购买 {coin}。当前余额：{self.balance}")
+        # else:
+        #     print(f"余额不足，无法购买 {coin}。当前余额：{self.balance}")
 
     def check_and_sell(self, current_price_info,times):
         """
@@ -92,6 +92,8 @@ class CoinTrader:
                     print(f"- {record['coin']}: 购买价格{record['buy_price']}, 数量{record['quantity']}, 预期盈利率{record['expected_profit_ratio']}")
 
         print("余额:", self.balance)
+    def get_balance(self):
+        return self.balance
 
 if __name__ == "__main__":
     # 示例使用
