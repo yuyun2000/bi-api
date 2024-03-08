@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 
-csv_file = '../data/doge-35-39.csv'
+csv_file = '../data/doge-37-39.csv'
 
 column_names = ['timestamp', 'open', 'high', 'low', 'close']
 df = pd.read_csv(csv_file, names=column_names, usecols=[0, 1, 2, 3, 4])
@@ -26,7 +26,7 @@ expected_profit_ratio=0.01
 for idx,x in enumerate(df['magnitude']):
     if idx<5:
         continue
-    fall_goal = -0.04
+    fall_goal = -0.01
     if (x+df['magnitude'][idx-1]+df['magnitude'][idx-2]+df['magnitude'][idx-3]+df['magnitude'][idx-4])<fall_goal:
     # if x < -0.01 and df['magnitude'][idx-1] < - 0.01 and df['magnitude'][idx-2] < - 0.01:
         agentx.buy(coin,df['close'].iloc[idx],buy_price/df['close'].iloc[idx],expected_profit_ratio,idx)

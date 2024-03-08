@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 
-csv_file = '../data/doge-35-39.csv'
+csv_file = '../data/doge-37-39.csv'
 
 column_names = ['timestamp', 'open', 'high', 'low', 'close']
 df = pd.read_csv(csv_file, names=column_names, usecols=[0, 1, 2, 3, 4])
