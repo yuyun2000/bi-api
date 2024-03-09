@@ -17,15 +17,14 @@ tick_size = 1
 min_num = 6 #最少买入usdt数量
 price_tick_size = 0.00001
 expected_profit_ratio = 1+0.013
-fall_goal = -0.015
+fall_goal = -0.025
 
 log_path = './log/1-5.txt'
-sleeptime = 77/len(symbols) #间隔88秒查询一次
-
+sleeptime = 68/len(symbols)*15
 while True:
     for symbol in symbols:
         try:
-            candles = client.get_klines(symbol=symbol, interval=Client.KLINE_INTERVAL_1MINUTE,
+            candles = client.get_klines(symbol=symbol, interval=Client.KLINE_INTERVAL_15MINUTE,
                                         limit=10)  # -1为目前的数据不稳定，-2为1分钟前的数据
             data0 = candles[-1]
             magnitude0 = (float(data0[4]) - float(data0[1])) / float(data0[1])
@@ -48,9 +47,10 @@ while True:
             magnitude7 = (float(data7[4]) - float(data7[1])) / float(data7[1])
             magnitude8 = (float(data8[4]) - float(data8[1])) / float(data8[1])
 
-            magnitude = [magnitude1, magnitude5, magnitude4, magnitude3, magnitude2]
+            magnitude = [magnitude1, magnitude2]
             magnitude_long = [magnitude1, magnitude5, magnitude4, magnitude3, magnitude2,magnitude8,magnitude7,magnitude6]
-            if sum_of_negative_numbers(magnitude) < fall_goal and count_negative_numbers(magnitude_long) !=8 and magnitude0 >fall_goal*0.5:#连续跌五次不买；五分钟跌幅较大，而且最新一分钟还在跌的不买
+            # if sum_of_negative_numbers(magnitude) < fall_goal and count_negative_numbers(magnitude_long) !=8 and magnitude0 >fall_goal*0.5:#连续跌五次不买；五分钟跌幅较大，而且最新一分钟还在跌的不买
+            if (sum_of_negative_numbers(magnitude) < fall_goal and magnitude0 > fall_goal * 0.5 and magnitude0 < 0.008) or magnitude0+magnitude1 < fall_goal:
                 balance_usdt = client.get_asset_balance(asset="USDT")
                 usdt_ori = float(balance_usdt['free'])
 
