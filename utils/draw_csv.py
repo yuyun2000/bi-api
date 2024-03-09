@@ -48,4 +48,4 @@ def drwa_csv(csv_file):
 
 
 
-drwa_csv('../data/doge-35-39.csv')
+drwa_csv('../data/NEARUSDT-37.csv')

@@ -1,24 +1,25 @@
 '''
-跟踪dogeusdt
+跟踪ftm
 '''
 import time
 import datetime
 from utils.create_log import append_purchase_log
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 from binance.helpers import round_step_size
+from utils.fn import sum_of_negative_numbers
 api_key = 'rHWmUNZ6dmxwjr6LI4K7jdwD6sHvLEq4WWcFnqH0okVJy4neS8ZC5y2oi6cbeya4'
 api_secret = 'E0uByClgaoIBMXgVzLaIXXsy0ReIYQNlZIIei6MfcL1iOq6bKNeWdolvk1zQmKYe'
 client = Client(api_key, api_secret)
 
-symbol='DOGEUSDT'
+symbol='FTMUSDT'
 tarcoin = "USDT"
 tick_size = 1
 min_num = 6 #最少买入usdt数量
-price_tick_size = 0.00001
+price_tick_size = 0.0001
 expected_profit_ratio = 1+0.01
-fall_goal = -0.01
+fall_goal = -0.02
 
-log_path = '../doge_log.txt'
+log_path = './log/ftm.txt'
 sleeptime = 88 #间隔88秒查询一次
 while True:
     try:
@@ -38,7 +39,8 @@ while True:
         magnitude4 = (float(data4[4]) - float(data4[1])) / float(data4[1])
         magnitude5 = (float(data5[4]) - float(data5[1])) / float(data5[1])
 
-        if (magnitude5 + magnitude4 + magnitude3 + magnitude2 + magnitude1) < fall_goal:
+        # if (magnitude5 + magnitude4 + magnitude3 + magnitude2 + magnitude1) < fall_goal:
+        if sum_of_negative_numbers([magnitude1,magnitude5,magnitude4,magnitude3,magnitude2]) < fall_goal:
             balance_usdt = client.get_asset_balance(asset=tarcoin)
             usdt_ori = float(balance_usdt['free'])
             # print(balance_usdt)
