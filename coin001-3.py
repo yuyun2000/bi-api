@@ -1,4 +1,4 @@
-
+import traceback  # 导入traceback模块
 import time
 import datetime
 from utils.create_log import append_purchase_log
@@ -73,5 +73,6 @@ while True:
                 append_purchase_log(log_path,symbol,purchase_time, buy_price, sell_price)
             time.sleep(sleeptime)
         except:
-            print('error')
+            print('symbol:',symbol)
+            traceback.print_exc()  # 打印详细的错误信息
             time.sleep(sleeptime)

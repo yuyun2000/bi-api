@@ -11,7 +11,7 @@ api_key = 'rHWmUNZ6dmxwjr6LI4K7jdwD6sHvLEq4WWcFnqH0okVJy4neS8ZC5y2oi6cbeya4'
 api_secret = 'E0uByClgaoIBMXgVzLaIXXsy0ReIYQNlZIIei6MfcL1iOq6bKNeWdolvk1zQmKYe'
 client = Client(api_key, api_secret)
 
-symbols=['NKNUSDT','SYSUSDT','ARKMUSDT','STORJUSDT','GTRUSDT','FETUSDT']
+symbols=['NKNUSDT','SYSUSDT','ARKMUSDT','STORJUSDT','GRTUSDT','FETUSDT']
 
 tick_size = 1
 min_num = 6 #最少买入usdt数量
@@ -87,7 +87,6 @@ while True:
                 append_purchase_log(log_path,symbol,purchase_time, buy_price, sell_price)
             time.sleep(sleeptime)
         except:
-            print('error')
-            # traceback.print_exc()  # 打印详细的错误信息
-            break
+            print('symbol:',symbol)
+            traceback.print_exc()  # 打印详细的错误信息
             time.sleep(sleeptime)

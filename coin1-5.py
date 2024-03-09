@@ -87,7 +87,6 @@ while True:
                 append_purchase_log(log_path,symbol,purchase_time, buy_price, sell_price)
             time.sleep(sleeptime)
         except:
-            print('error')
-            # traceback.print_exc()  # 打印详细的错误信息
-            break
+            print('symbol:',symbol)
+            traceback.print_exc()  # 打印详细的错误信息
             time.sleep(sleeptime)

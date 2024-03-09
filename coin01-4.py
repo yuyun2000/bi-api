@@ -88,6 +88,6 @@ while True:
             time.sleep(sleeptime)
         except:
             print('error')
-            # traceback.print_exc()  # 打印详细的错误信息
-            break
+            traceback.print_exc()  # 打印详细的错误信息
+            # break
             time.sleep(sleeptime)

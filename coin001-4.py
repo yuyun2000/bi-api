@@ -19,7 +19,7 @@ price_tick_size = 0.0001
 expected_profit_ratio = 1+0.013
 fall_goal = -0.013
 
-log_path = './log/1-6.txt'
+log_path = './log/001-4.txt'
 sleeptime = 60/len(symbols) #间隔88秒查询一次
 
 while True:
@@ -88,6 +88,6 @@ while True:
             time.sleep(sleeptime)
         except:
             print('error')
-            # traceback.print_exc()  # 打印详细的错误信息
-            break
+            traceback.print_exc()  # 打印详细的错误信息
+            # break
             time.sleep(sleeptime)

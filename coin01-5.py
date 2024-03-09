@@ -20,7 +20,7 @@ expected_profit_ratio = 1+0.013
 fall_goal = -0.013
 
 log_path = './log/01-5.txt'
-sleeptime = 60/len(symbols) #间隔88秒查询一次
+sleeptime = 77/len(symbols) #间隔88秒查询一次
 
 while True:
     for symbol in symbols:
@@ -88,6 +88,6 @@ while True:
             time.sleep(sleeptime)
         except:
             print('error')
-            # traceback.print_exc()  # 打印详细的错误信息
-            break
+            traceback.print_exc()  # 打印详细的错误信息
+            # break
             time.sleep(sleeptime)

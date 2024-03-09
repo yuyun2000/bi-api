@@ -1,10 +1,10 @@
-
+import traceback  # 导入traceback模块
 import time
 import datetime
 from utils.create_log import append_purchase_log
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
 from binance.helpers import round_step_size
-from utils.fn import sum_of_negative_numbers
+from utils.fn import sum_of_negative_numbers,count_negative_numbers
 from utils.get_24h import if_near_highprice_to_buy
 
 api_key = 'rHWmUNZ6dmxwjr6LI4K7jdwD6sHvLEq4WWcFnqH0okVJy4neS8ZC5y2oi6cbeya4'
@@ -26,21 +26,28 @@ while True:
     for symbol in symbols:
         try:
             candles = client.get_klines(symbol=symbol, interval=Client.KLINE_INTERVAL_1MINUTE,
-                                        limit=8)  # -1为目前的数据不稳定，-2为1分钟前的数据
+                                        limit=10)  # -1为目前的数据不稳定，-2为1分钟前的数据
             data1 = candles[-2]
             data2 = candles[-3]
             data3 = candles[-4]
             data4 = candles[-5]
             data5 = candles[-6]
             data6 = candles[-7]
+            data7 = candles[-8]
+            data8 = candles[-9]
 
             magnitude1 = (float(data1[4]) - float(data1[1])) / float(data1[1])
             magnitude2 = (float(data2[4]) - float(data2[1])) / float(data2[1])
             magnitude3 = (float(data3[4]) - float(data3[1])) / float(data3[1])
             magnitude4 = (float(data4[4]) - float(data4[1])) / float(data4[1])
             magnitude5 = (float(data5[4]) - float(data5[1])) / float(data5[1])
+            magnitude6 = (float(data6[4]) - float(data6[1])) / float(data6[1])
+            magnitude7 = (float(data7[4]) - float(data7[1])) / float(data7[1])
+            magnitude8 = (float(data8[4]) - float(data8[1])) / float(data8[1])
 
-            if sum_of_negative_numbers([magnitude1, magnitude5, magnitude4, magnitude3, magnitude2]) < fall_goal:
+            magnitude = [magnitude1, magnitude5, magnitude4, magnitude3, magnitude2]
+            magnitude_long = [magnitude1, magnitude5, magnitude4, magnitude3, magnitude2,magnitude8,magnitude7,magnitude6]
+            if sum_of_negative_numbers(magnitude) < fall_goal and count_negative_numbers(magnitude_long) !=8 and magnitude0 >fall_goal*0.5:
                 balance_usdt = client.get_asset_balance(asset="USDT")
                 usdt_ori = float(balance_usdt['free'])
 
@@ -73,5 +80,6 @@ while True:
                 append_purchase_log(log_path,symbol,purchase_time, buy_price, sell_price)
             time.sleep(sleeptime)
         except:
-            print('error')
+            print('symbol:',symbol)
+            traceback.print_exc()  # 打印详细的错误信息
             time.sleep(sleeptime)
