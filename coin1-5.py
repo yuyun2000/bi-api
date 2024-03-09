@@ -11,16 +11,16 @@ api_key = 'rHWmUNZ6dmxwjr6LI4K7jdwD6sHvLEq4WWcFnqH0okVJy4neS8ZC5y2oi6cbeya4'
 api_secret = 'E0uByClgaoIBMXgVzLaIXXsy0ReIYQNlZIIei6MfcL1iOq6bKNeWdolvk1zQmKYe'
 client = Client(api_key, api_secret)
 
-symbols=['SHIBUSDT','PEPEUSDT','FLOKIUSDT','BONKUSDT','USTCUSDT']
+symbols=['IOTXUSDT','AGIXUSDT','COTIUSDT','NFPUSDT','VIBUSDT','DOGEUSDT']
 
 tick_size = 1
 min_num = 6 #最少买入usdt数量
-price_tick_size = 0.00000001
+price_tick_size = 0.00001
 expected_profit_ratio = 1+0.013
-fall_goal = -0.013
+fall_goal = -0.015
 
-log_path = './log/01.txt'
-sleeptime = 60/len(symbols) #间隔88秒查询一次
+log_path = './log/1-5.txt'
+sleeptime = 77/len(symbols) #间隔88秒查询一次
 
 while True:
     for symbol in symbols:

@@ -11,15 +11,15 @@ api_key = 'rHWmUNZ6dmxwjr6LI4K7jdwD6sHvLEq4WWcFnqH0okVJy4neS8ZC5y2oi6cbeya4'
 api_secret = 'E0uByClgaoIBMXgVzLaIXXsy0ReIYQNlZIIei6MfcL1iOq6bKNeWdolvk1zQmKYe'
 client = Client(api_key, api_secret)
 
-symbols=['LPTUSDT','WIFUSDT','STRKUSDT','LUNAUSDT','SOLUSDT','AVAXUSDT']
+symbols=['NEARUSDT','WLDUSDT']
 
-tick_size = 0.01
+tick_size = 0.1
 min_num = 6 #最少买入usdt数量
-price_tick_size = 0.01
-expected_profit_ratio = 1+0.01
-fall_goal = -0.02
+price_tick_size = 0.001
+expected_profit_ratio = 1+0.013
+fall_goal = -0.015
 
-log_path = './log/001.txt'
+log_path = './log/01-3.txt'
 sleeptime = 88/len(symbols) #间隔88秒查询一次
 
 while True:
